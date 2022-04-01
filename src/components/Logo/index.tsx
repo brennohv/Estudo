@@ -5,7 +5,7 @@ export type LogoProps = {
 }
 
 const Logo = ({ color = 'black' }: LogoProps) => (
-  <S.Wrapper color={color}>
+  <S.Wrapper color={color} aria-label="Logo">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 158 48">
       <path
         fill="url(#a)"
