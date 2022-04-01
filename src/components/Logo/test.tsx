@@ -19,4 +19,24 @@ describe('<Logo />', () => {
     const logo = screen.getByLabelText('Logo')
     expect(logo).toHaveStyle(`color: ${theme.colors.white}`)
   })
+
+  it('should render the bigger Logo by default', () => {
+    renderWithTheme(<Logo />)
+
+    const logo = screen.getByLabelText('Logo')
+    expect(logo).toHaveStyle({
+      width: '20rem',
+      height: '5.9rem'
+    })
+  })
+
+  it('should render the less Logo by passed size small', () => {
+    renderWithTheme(<Logo size="small" />)
+
+    const logo = screen.getByLabelText('Logo')
+    expect(logo).toHaveStyle({
+      width: '11rem',
+      height: '3.3rem'
+    })
+  })
 })
