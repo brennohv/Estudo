@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
-import theme from 'styles/theme'
 import { renderWithTheme } from 'utils/test/helpers'
+import theme from 'styles/theme'
 
 import Logo from '.'
 
@@ -37,6 +37,14 @@ describe('<Logo />', () => {
     expect(logo).toHaveStyle({
       width: '11rem',
       height: '3.3rem'
+    })
+  })
+
+  it('should hide on mobile when passed hideOnMobile props', () => {
+    renderWithTheme(<Logo hideOnMobile />)
+    const logo = screen.getByLabelText('Logo')
+    expect(logo).toHaveStyleRule('width', '5.8rem', {
+      media: '(max-width: 768px)'
     })
   })
 })
