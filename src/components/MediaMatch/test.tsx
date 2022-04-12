@@ -22,6 +22,7 @@ describe('<MediaMatch />', () => {
     onDesktop = screen.getByTestId('desktop')
     onMobile = screen.getByTestId('mobile')
   })
+
   it('should not render the heading by default', () => {
     expect(onDesktop.parentElement).toHaveStyleRule('display', 'none')
     expect(onMobile.parentElement).toHaveStyleRule('display', 'none')
