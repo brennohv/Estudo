@@ -28,6 +28,7 @@ describe('<Menu />', () => {
     //fechando menu
     fireEvent.click(screen.getByLabelText(/close menu/i))
     expect(menuFull.getAttribute('aria-hidden')).toBe('true')
+    expect(menuFull.getAttribute('aria-hidden')).toBe('false')
     expect(menuFull).toHaveStyle({ opacity: '0' })
   })
 })
