@@ -28,7 +28,33 @@ describe('<Menu />', () => {
     //fechando menu
     fireEvent.click(screen.getByLabelText(/close menu/i))
     expect(menuFull.getAttribute('aria-hidden')).toBe('true')
-    expect(menuFull.getAttribute('aria-hidden')).toBe('false')
     expect(menuFull).toHaveStyle({ opacity: '0' })
+  })
+
+  it('should not render the wishlist and my account and render registerBox when logged out', () => {
+    renderWithTheme(<Menu />)
+    expect(
+      screen.queryByRole('link', { name: /My account/i })
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('link', { name: /Wishlist/i })
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: 'Log in now', hidden: true })
+    ).toBeInTheDocument()
+  })
+
+  it('should render the wishlist and my account but does not render RegisterBox', () => {
+    renderWithTheme(<Menu userName="Brenno" />)
+
+    expect(
+      screen.getByRole('link', { name: /My account/i, hidden: true })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: /Wishlist/i, hidden: true })
+    ).toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: 'Log in now', hidden: true })
+    ).not.toBeInTheDocument()
   })
 })
