@@ -5,19 +5,27 @@ import media from 'styled-media-query'
 const wrapperModifier = {
   small: (theme: DefaultTheme) => css`
     font-size: ${theme.font.sizes.medium};
+
+    ::after {
+      width: 3rem;
+    }
   `,
-  medium: (theme: DefaultTheme) => css`
+  medium: () => css`
+    font-size: 2.4rem;
+  `,
+
+  large: (theme: DefaultTheme) => css`
     font-size: ${theme.font.sizes.xxlarge};
 
     ${media.lessThan('medium')`
       font-size: 2.4rem;
-    `};
+    `}
   `,
   borderLeft: (theme: DefaultTheme) => css`
     border-left: 0.7rem solid ${theme.colors.secondary};
     padding-left: ${theme.spacings.xxsmall};
   `,
-  borderBottom: (theme: DefaultTheme) => css`
+  borderBottom: (theme: DefaultTheme, color: 'primary' | 'secondary') => css`
     position: relative;
 
     ::after {
@@ -25,17 +33,24 @@ const wrapperModifier = {
       position: absolute;
       margin-top: 0.4rem;
       display: block;
-      border-bottom: 0.5rem solid ${theme.colors.primary};
+      border-bottom: 0.5rem solid ${theme.colors[color]};
       width: 4.9rem;
     }
   `
 }
 
 export const Wrapper = styled.h2<HeadingProps>`
-  ${({ theme, color, size, borderLeft, borderBottom }) => css`
+  ${({
+    theme,
+    color,
+    size,
+    borderLeft,
+    borderBottom,
+    colorBorderBottom
+  }) => css`
     color: ${theme.colors[color!]};
-    ${!!size && wrapperModifier[size!](theme)}
     ${!!borderLeft && wrapperModifier.borderLeft(theme)}
-    ${!!borderBottom && wrapperModifier.borderBottom(theme)}
+    ${!!borderBottom && wrapperModifier.borderBottom(theme, colorBorderBottom!)}
+    ${!!size && wrapperModifier[size!](theme)}
   `}
 `
