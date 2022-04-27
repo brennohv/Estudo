@@ -13,6 +13,10 @@ export const parameters = {
       {
         name: 'MainBg',
         value: '#06092B'
+      },
+      {
+        name: 'White',
+        value: '#FAFAFA'
       }
     ]
   }
