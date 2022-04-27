@@ -33,10 +33,5 @@ export const Colum = styled.div`
       text-decoration: none;
       margin-top: ${theme.spacings.xxsmall};
     }
-
-    span:first-of-type,
-    a:first-of-type {
-      margin-top: ${theme.spacings.small};
-    }
   `}
 `

@@ -66,4 +66,22 @@ describe('<Button />', () => {
       marginLeft: '0.8rem'
     })
   })
+
+  it('should render button as a link', () => {
+    const { debug, container } = renderWithTheme(
+      <Button as="a" href="/store">
+        link
+      </Button>
+    )
+
+    debug(container)
+
+    expect(screen.getByRole('link', { name: /link/i })).toHaveAttribute(
+      'href',
+      '/store'
+    )
+    expect(screen.getByRole('link', { name: /link/i })).toHaveStyle({
+      textDecoration: 'none'
+    })
+  })
 })

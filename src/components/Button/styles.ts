@@ -10,6 +10,7 @@ export const modifierWraper = {
       width: 1.5rem;
     }
   `,
+
   medium: (theme: DefaultTheme) => css`
     width: 12.2rem;
     height: 4rem;
@@ -18,6 +19,7 @@ export const modifierWraper = {
       width: 1.8rem;
     }
   `,
+
   large: (theme: DefaultTheme) => css`
     width: 15rem;
     height: 5rem;
@@ -26,13 +28,19 @@ export const modifierWraper = {
       width: 2.1rem;
     }
   `,
+
   fullWidth: () => css`
     width: 100%;
   `,
+
   withIcon: () => css`
     span {
       margin-left: 0.8rem;
     }
+  `,
+
+  asLink: () => css`
+    text-decoration: none;
   `
 }
 
@@ -41,7 +49,7 @@ type WrapperProps = {
 } & ButtonProps
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, fullWidth, hasIcon }) => css`
+  ${({ theme, size, fullWidth, hasIcon, as }) => css`
     color: ${theme.colors.white};
     font-weight: 500;
     font-family: ${theme.font.family};
@@ -58,6 +66,7 @@ export const Wrapper = styled.button<WrapperProps>`
       #f23131 102.86%
     );
 
+    ${as === 'a' && modifierWraper.asLink()}
     ${!!size && modifierWraper[size!](theme)};
     ${fullWidth && modifierWraper.fullWidth()}
     ${hasIcon && modifierWraper.withIcon()}

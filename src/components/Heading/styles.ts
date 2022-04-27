@@ -27,11 +27,11 @@ const wrapperModifier = {
   `,
   borderBottom: (theme: DefaultTheme, color: 'primary' | 'secondary') => css`
     position: relative;
+    margin-bottom: ${theme.spacings.medium};
 
     ::after {
       content: '';
       position: absolute;
-      margin-top: 0.4rem;
       display: block;
       border-bottom: 0.5rem solid ${theme.colors[color]};
       width: 4.9rem;
