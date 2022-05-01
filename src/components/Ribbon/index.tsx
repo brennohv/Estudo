@@ -1,9 +1,12 @@
 import * as S from './styles'
 
+export type Colors = 'primary' | 'secondary'
+export type Size = 'extraLarge' | 'large' | 'small'
+
 export type RibbonProps = {
   children: React.ReactNode
-  color?: 'primary' | 'secondary'
-  size?: 'extraLarge' | 'large' | 'small'
+  color?: Colors
+  size?: Size
 }
 
 const Ribbon = ({
@@ -11,7 +14,7 @@ const Ribbon = ({
   color = 'secondary',
   size = 'large'
 }: RibbonProps) => (
-  <S.Wrapper color={color} size={size}>
+  <S.Wrapper color={color} size={size} aria-label="Ribbon">
     {children}
   </S.Wrapper>
 )

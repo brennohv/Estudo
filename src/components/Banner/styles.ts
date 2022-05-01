@@ -1,16 +1,29 @@
 import styled, { css } from 'styled-components'
 import * as ButtonStyles from 'components/Button/styles'
 import media from 'styled-media-query'
+import * as RibbonStyles from 'components/Ribbon/styles'
 
 export const Wrapper = styled.div`
+  position: relative;
+  border-radius: 0.4rem;
+
+  ${RibbonStyles.Wrapper} {
+    ${media.lessThan('medium')`
+        right: 0;
+
+        ::after {
+          display: none;
+        }
+      `}
+  }
   ${media.greaterThan('medium')`
-    position: relative;
-    border-radius: 4px;
-    box-shadow: 0 0.4rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.4rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+
     ${ButtonStyles.Wrapper} {
       width: 15rem;
       height: 5rem;
-    };
+
+    }
   `}
 `
 

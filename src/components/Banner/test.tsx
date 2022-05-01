@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react'
+import theme from 'styles/theme'
 import { renderWithTheme } from 'utils/test/helpers'
 
 import Banner from '.'
@@ -27,5 +28,24 @@ describe('<Banner />', () => {
       'href',
       '/games/defy-death'
     )
+  })
+
+  it('should render Ribbon component when passed by props', () => {
+    renderWithTheme(<Banner {...props} withRibbon="Best seller" />)
+
+    expect(screen.getByLabelText('Ribbon')).toBeInTheDocument()
+    expect(screen.getByText(/Best seller/i)).toBeInTheDocument()
+  })
+
+  it('should render Ribbon with extraLarge size when passed by props', () => {
+    renderWithTheme(
+      <Banner {...props} withRibbon="Best seller" ribbonSize="extraLarge" />
+    )
+
+    expect(screen.getByLabelText('Ribbon')).toHaveStyle({
+      height: '4rem',
+      fontSize: theme.font.sizes.large,
+      right: '-2.2rem'
+    })
   })
 })
